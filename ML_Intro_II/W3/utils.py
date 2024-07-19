@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn import datasets
 
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
@@ -12,6 +13,15 @@ from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+
+def load_data():
+    iris = datasets.load_iris()
+    X = iris.data[:, :2]  # we only take the first two features.
+    y = iris.target
+
+    X = X[y != 2] # only two classes
+    y = y[y != 2]
+    return X, y
 
 def plot_dataset(x, y, title):
     plt.rcParams["figure.figsize"] = (12,8)
